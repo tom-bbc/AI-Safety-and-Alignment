@@ -18,4 +18,20 @@
 
 ### RLAIF vs. RLHF: the technology behind Anthropic’s Claude (Constitutional AI Explained)
 
-* 
+* Human feedback is not scalable.
+* **Constitutional AI**:
+ * Lays out a set of strict rules for an AI system.
+ * The model must be helpful (non-evasive) and harmless.
+ * This should allow the model to explain why it is not answering specific prompts (e.g. those requesting harmful behaviour).
+* Training Constitutional AI:
+ * Supervised learning phase uses harmful prompts and an existing RLHF trained model. 
+ * The model first responds to the harmful prompt, then is asked to critique its own answer (w.r.t a constitutional principle), then use this critigue to regenerate a revised response.
+ * The harmful prompts and revised responses are then used as training pairs (alongside some sampled helpful prompts) to fine-tune a new **SL-CAI model** (supervised learning constitutional AI).
+ * A reinforcement learning phase then follows.
+ * The SL-CAI model is used on a dataset of harmful prompts to generate two possible responses for each prompt.
+ * The model is then asked to pick one of the responses based on a given constitutional principle to create a **preference dataset** (HF data can also be mixed in).
+ * A **preference model** is trained on the preference dataset to give AI feedback.
+ * The preference model is used to conduct a fine-tuning round of the SL-CAI model using RL with AI feedback (RLAIF) to build the final **RL-CAI model**.
+* This process was shown to produce less harmful and evasive models (compared to RLHF) that give more explainable answers.
+
+
