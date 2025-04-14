@@ -1,6 +1,6 @@
 # AI Alignment Fast-Track
 
-## Using AI to align AI
+## Unit 3: Using AI to align AI
 
 * **Scalable oversight** methods aim to assist humans in evaluating complex tasks and behaviour.
 * **Task decomposition**:
@@ -10,7 +10,7 @@
   * AI assistance for humans evaluating LLM outputs.
   * The assisted evaluations can be used to train a reward model, which trains a new, better LLM, and repeat.
 * **Constitutional AI**:
-  * Techniques like RLAIF that are based on a set of constitutional principles.
+  * See Unit 2 - RLAIF vs. RLHF.
 * **Debate**:
   * Multiple AI systems argue different takes on a task/issue, providing evidence and arguments, and discrediting other debaters statements.
   * A human then decides the winner.

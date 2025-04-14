@@ -1,6 +1,6 @@
 # AI Alignment Fast-Track
 
-## What makes aligning AI difficult?
+## Unit 2: What makes aligning AI difficult?
 
 ### How GPT-2 Became Maximally Lewd
 
@@ -19,20 +19,23 @@
 ### RLAIF vs. RLHF: the technology behind Anthropic’s Claude (Constitutional AI Explained)
 
 * Human feedback is not scalable.
-* **Constitutional AI**:
- * Lays out a set of strict rules for an AI system.
- * The model must be helpful (non-evasive) and harmless.
- * This should allow the model to explain why it is not answering specific prompts (e.g. those requesting harmful behaviour).
+* **Constitutional AI**: techniques (like RLAIF) that aim to align AI systems based on a set of constitutional principles.
+* Constitutional AI overview:
+  * Lays out a set of strict rules for an AI system.
+  * The model must be helpful (non-evasive) and harmless.
+  * This should allow the model to explain why it is not answering specific prompts (e.g. those requesting harmful behaviour).
 * Training Constitutional AI:
- * Supervised learning phase uses harmful prompts and an existing RLHF trained model.
- * The model first responds to the harmful prompt, then is asked to critique its own answer (w.r.t a constitutional principle), then use this critigue to regenerate a revised response.
- * The harmful prompts and revised responses are then used as training pairs (alongside some sampled helpful prompts) to fine-tune a new **SL-CAI model** (supervised learning constitutional AI).
- * A reinforcement learning phase then follows.
- * The SL-CAI model is used on a dataset of harmful prompts to generate two possible responses for each prompt.
- * The model is then asked to pick one of the responses based on a given constitutional principle to create a **preference dataset** (HF data can also be mixed in).
- * A **preference model** is trained on the preference dataset to give AI feedback.
- * The preference model is used to conduct a fine-tuning round of the SL-CAI model using RL with AI feedback (RLAIF) to build the final **RL-CAI model**.
-* This process was shown to produce less harmful and evasive models (compared to RLHF) that give more explainable answers.
+  * Supervised learning phase:
+    * Supervised learning phase uses harmful prompts and an existing RLHF trained model.
+    * The model first responds to the harmful prompt, then is asked to critique its own answer (w.r.t a constitutional principle), then use this critigue to regenerate a revised response.
+    * The harmful prompts and revised responses are then used as training pairs (alongside some sampled helpful prompts) to fine-tune a new **SL-CAI model** (supervised learning constitutional AI).
+  * Reinforcement learning phase:
+    * A reinforcement learning phase then follows.
+    * The SL-CAI model is used on a dataset of harmful prompts to generate two possible responses for each prompt.
+    * The model is then asked to pick one of the responses based on a given constitutional principle to create a **preference dataset** (HF data can also be mixed in).
+    * A **preference model** is trained on the preference dataset to give AI feedback.
+    * The preference model is used to conduct a fine-tuning round of the SL-CAI model using RL with AI feedback (RLAIF) to build the final **RL-CAI model**.
+* The RLAIF process was shown to produce less harmful and evasive models (compared to RLHF) that give more explainable answers.
 
 ### A simple technical explanation of RLH(AI)F
 
@@ -73,10 +76,10 @@
 
 ### Problems with Reinforcement Learning from Human Feedback (RLHF) for AI safety
 
-* In their blog ["Introducing Superalignment"](https://openai.com/index/introducing-superalignment/) OpenAI researchers suggest we will need to go further than RLHF to align superintelligent AI models.
+* In their blog [&#34;Introducing Superalignment&#34;](https://openai.com/index/introducing-superalignment/) OpenAI researchers suggest we will need to go further than RLHF to align superintelligent AI models.
 * Flaws of RLHF:
-  * LLMs often engage in **sychophantic behaviour** where responses are given that aim to elicit human approval to maximise their reward during RLHF (researched by Anothropic in ["Towards Understanding Sychophancy in Language Models"](https://arxiv.org/pdf/2310.13548)). This includes answers that play into existing beliefs, and changing responses even when they are known to be correct.
-  * The process promptes the development of **situational awareness* in LLMs, as a model that understands the consept of what it is and the environment its in is likely to satisfy the goal of producing outputs that please its evaluators. It could also allow the model to differentiale between training and deployment phases and exhibit different behaviour between the two.
+  * LLMs often engage in **sychophantic behaviour** where responses are given that aim to elicit human approval to maximise their reward during RLHF (researched by Anothropic in [&#34;Towards Understanding Sychophancy in Language Models&#34;](https://arxiv.org/pdf/2310.13548)). This includes answers that play into existing beliefs, and changing responses even when they are known to be correct.
+  * The process promotes the development of *situational awareness* in LLMs, as a model that understands the consept of what it is and the environment its in is likely to satisfy the goal of producing outputs that please its evaluators. It could also allow the model to differentiale between training and deployment phases and exhibit different behaviour between the two.
   * The process would not be capable of identifying a **schemer** model that is misaligned and desceptive (e.g. Meta's [CICERO model](https://arxiv.org/pdf/2308.14752#page=6) was found to exhibit desceptive behaviour and the ability to knowingly relay false information, and an [OpenAI robot](https://openai.com/index/learning-from-human-preferences/) was found to exhibit reward hacking by tricking evaluators).
   * Human responses and evaluations are falliable, and can introduce inaccuracies and bias in addition to the challenges of scaling to higher capacity and more complex tasks.
   * **Jailbreak prompts** are known to get through the RLHF process and allow unsafe conduct. This suggests RLHF is not a very robust form of AI safety.

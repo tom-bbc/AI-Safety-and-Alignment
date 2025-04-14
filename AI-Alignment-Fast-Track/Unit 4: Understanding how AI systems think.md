@@ -1,6 +1,6 @@
 # AI Alignment Fast-Track
 
-## Understanding how AI systems think
+## Unit 4: Understanding how AI systems think
 
 ### Introduction to Mechanistic Interpretability
 
@@ -55,12 +55,12 @@
     * These curve detectors appear to exist in 'families' that detect the same curve feature but in different orentations.
     * The paper uses 7 arguments to 'prove' the behaviour of curve detection neurons, which can be used to interpret other features too:
     1) **Feature visualisation**: if we adjust/optimise the input image to always activate the given neurons, that input contains many curves (causal link).
-    2) **Dataset examples**: the images in the test dataset that cause these neuroons to fire the most contain many curves.
+    2) **Dataset examples**: the images in the test dataset that cause these neurons to fire the most contain many curves.
     3) **Synthetic examples**: introducing synthetic curves to input images gets these neurons to activate, but introducing straight lines etc. does not.
     4) **Joint tuning**: if we rotate a curve within an image, one family of neurons gradually stops activating and another begins to activate (hence families correspond to different orientations).
     5) **Feature implementation**: inspecting the weighted connections between circuits of neurons can help infer what feature they correspond to.
     6) **Feature use**: inspecting the higher-fidelity features later in the network that emerge from the features at the current earlier layer reveals those features to be ones that typically contain curves (suggesting these features are build up from curve features earlier in the network).
-    7) **Handwritten circuits**: if we build our own network with knownn circuits corresponding to curve detection, its activations mimic that of the original network.
+    7) **Handwritten circuits**: if we build our own network with known circuits corresponding to curve detection, its activations mimic that of the original network.
 ![Example of feature visualisation and dataset examples for a dog head detector](https://distill.pub/2020/circuits/zoom-in/images/dog-pose.png)
 ![Diagram showing how early layers' features can be built up to complex shapes later in the network](https://distill.pub/2020/circuits/zoom-in/images/curve-circuit.png)
   * These arguments can be brought together to interpret the meaning of given features and circuits.
