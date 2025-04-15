@@ -10,6 +10,7 @@
 ### Blogposts
 
 * [Model Organisms of Misalignment: The Case for a New Pillar of Alignment Research](https://www.lesswrong.com/posts/ChDH335ckdvpxXaXX/model-organisms-of-misalignment-the-case-for-a-new-pillar-of-1) by Evan Hubinger (Aug 2023)
+* [Towards Monosemanticity: Decomposing Language Models With Dictionary Learning](https://transformer-circuits.pub/2023/monosemantic-features/index.html) by Trenton Bricken (Oct 2023)
 * [What Is The Alignment Problem?](https://www.lesswrong.com/posts/dHNKtQ3vTBxTfTPxu/what-is-the-alignment-problem) by John Wentworth (Jan 2025)
 * [AGI Safety and Alignment at Google DeepMind: A Summary of Recent Work](https://deepmindsafetyresearch.medium.com/agi-safety-and-alignment-at-google-deepmind-a-summary-of-recent-work-8e600aca582a) by DeepMind Safety Research (Oct 2024)
 * [A multi-disciplinary view on AI safety research](https://www.alignmentforum.org/posts/opE6L8jBTTNAyaDbB/a-multi-disciplinary-view-on-ai-safety-research) by Roman Leventov (Feb 2023)
@@ -31,3 +32,4 @@
 * [AI Safety &amp; Alignment (COS 597Q)](https://sites.google.com/view/cos598aisafety/) by Princeton University
 * [AI Alignment (CSC2547)](https://alignment-w2024.notion.site/CSC2547-AI-Alignment-b44359978f3a4a8f95c90adb0a6e7d53) by University of Toronto
 * [AI Safety Initiative Fellowship](https://docs.google.com/document/d/1BAw0oX4eyVBXvz_58MeAINmZqonIjHdrsXq9KX1_JFo) by Georgia Institute of Technology
+* [The Turing Online Learning Platform](https://www.turing.ac.uk/courses?utm_source=LinkedIn&utm_medium=Text_link&utm_campaign=Turing-Online-Learning-Platform)
