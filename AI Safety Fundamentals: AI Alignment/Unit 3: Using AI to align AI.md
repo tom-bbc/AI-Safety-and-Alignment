@@ -1,4 +1,4 @@
-# AI Alignment Fast-Track
+# AI Safety Fundamentals: AI Alignment
 
 ## Unit 3: Using AI to align AI
 

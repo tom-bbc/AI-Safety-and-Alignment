@@ -1,4 +1,4 @@
-# AI Alignment Fast-Track
+# AI Safety Fundamentals: AI Alignment
 
 ## Unit 4: Understanding how AI systems think
 

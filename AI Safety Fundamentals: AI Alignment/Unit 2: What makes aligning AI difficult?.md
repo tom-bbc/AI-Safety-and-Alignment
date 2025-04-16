@@ -1,4 +1,4 @@
-# AI Alignment Fast-Track
+# AI Safety Fundamentals: AI Alignment
 
 ## Unit 2: What makes aligning AI difficult?
 

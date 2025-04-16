@@ -1,4 +1,4 @@
-# AI Alignment Fast-Track
+# AI Safety Fundamentals: AI Alignment
 
 ## Final summary of course learnings
 
