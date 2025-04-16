@@ -26,10 +26,12 @@
 ### Videos
 
 * Princeton AI Alignment and Safety seminars (Mar-Dec 2024):
+  * [AI Safety & Alignment (COS 597Q) - Course Description & Basic Information](https://sites.google.com/view/cos598aisafety/)
   * [Homepage](https://pli.princeton.edu/events/princeton-ai-alignment-and-safety-seminar)
   * [YouTube playlist](https://www.youtube.com/playlist?list=PLWRU-w8UhT6jNg64UfBB0VtlvI4Upe914)
   * [Reading list](https://docs.google.com/spreadsheets/d/1xaPjEsWBnlBI2maz6k64z11A99USU7ahaC2V615FGjQ/edit?gid=848424154#gid=848424154)
 * [Stanford Center for AI Safety Annual Meeting 2024](https://www.cs.stanford.edu/events/affiliates-events/stanford-center-ai-safety-annual-meeting-2024) (Aug 2024) ✅
+* [AI Safety Initiative Fellowship](https://docs.google.com/document/d/1BAw0oX4eyVBXvz_58MeAINmZqonIjHdrsXq9KX1_JFo) by Georgia Institute of Technology
 
 ### Courses
 
@@ -37,7 +39,5 @@
 * [AI Safety Fundamentals: AI Alignment](https://course.aisafetyfundamentals.com/alignment) by BlueDot Impact ✅
 * [Intro to ML Safety](https://course.mlsafety.org) 🟠
 * [Introducing our short course on AGI safety](https://deepmindsafetyresearch.medium.com/introducing-our-short-course-on-agi-safety-1072adb7912c) by DeepMind Safety Research ✅
-* [AI Safety & Alignment (COS 597Q)](https://sites.google.com/view/cos598aisafety/) by Princeton University
 * [AI Alignment (CSC2547)](https://alignment-w2024.notion.site/CSC2547-AI-Alignment-b44359978f3a4a8f95c90adb0a6e7d53) by University of Toronto
-* [AI Safety Initiative Fellowship](https://docs.google.com/document/d/1BAw0oX4eyVBXvz_58MeAINmZqonIjHdrsXq9KX1_JFo) by Georgia Institute of Technology
 * [The Turing Online Learning Platform](https://www.turing.ac.uk/courses?utm_source=LinkedIn&utm_medium=Text_link&utm_campaign=Turing-Online-Learning-Platform)
