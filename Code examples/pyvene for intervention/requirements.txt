@@ -1,0 +1,8 @@
+pandas
+pyvene
+plotnine
+nnsight
+numpy
+torch
+transformers
+huggingface_hub

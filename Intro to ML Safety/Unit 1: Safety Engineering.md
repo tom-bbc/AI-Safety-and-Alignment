@@ -17,10 +17,10 @@
 * **Failure modes and effects analysis**: identification of failures, effects, root causes, and calculation of risk priorities.
 * **Swiss cheese model**: multiple layers of safety barriers.
 
-![Example swiss cheese accident model](/Intro-to-ML-Safety/resources/swiss-cheese-model.png)
+![Example swiss cheese accident model](./resources/swiss-cheese-model.png)
 
 * **Bow tie model**: using both preventative barriers to decrease probability of a hazard and protective barriers to decrease the impact of the hazard.
 
-![Example bow tie model](/Intro-to-ML-Safety/resources/bow-tie-model.png)
+![Example bow tie model](./resources/bow-tie-model.png)
 
 * Often linear causality is not enough, and hazards are interconnected, circular in causation, and cannot be directly identified or addressed. Hence should look for the collection of factors that are responsible.
