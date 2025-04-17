@@ -12,6 +12,7 @@
   * [Improving Dictionary Learning with Gated Sparse Autoencoders](https://arxiv.org/abs/2404.16014) (Apr 2024)
   * [Scalable AI Safety via Doubly-Efficient Debate](https://arxiv.org/abs/2311.14125) (Nov 2023)
   * [On scalable oversight with weak LLMs judging strong LLMs](https://arxiv.org/abs/2407.04622) (Jul 2024)
+* [Are Sparse Autoencoders Useful? A Case Study in Sparse Probing](https://arxiv.org/abs/2502.16681) (Feb 2025)
 
 ### Blogposts
 
