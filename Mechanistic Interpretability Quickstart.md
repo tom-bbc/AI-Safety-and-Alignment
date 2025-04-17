@@ -2,7 +2,7 @@
 
 ## Resources
 
-* Useful course / presentation: [Intro to Mechanistic Interpretability: TransformerLens & Induction Circuits](https://arena-chapter1-transformer-interp.streamlit.app/[1.2]_Intro_to_Mech_Interp)
+* Useful course / presentation: [Intro to Mechanistic Interpretability: TransformerLens &amp; Induction Circuits](https://arena-chapter1-transformer-interp.streamlit.app/[1.2]_Intro_to_Mech_Interp)
 * TransformerLens:
   * The TransformerLens library is a collection of features for mechanistic interpretability.
   * [TransformerLens Git Repo](https://github.com/TransformerLensOrg/TransformerLens)
@@ -25,6 +25,7 @@
   * More general forms of induction can involve tasks like checking whether the last $k$ tokens occur earlier in the input text.
   * **Previous token head**: an attention head who's behaviour is to (mainly) attend to the previous token.
   * **Induction head**: an attention head who's behaviour implements the induction task, i.e. attending to the token immediately after a previous occurance of the current token, and predicting the reuse of this token (by directly increasing the value of that token's logit). Typically if there are multiple different next tokens witnessed, these are all attended over diffusely.
+  * Generalised induction heads can generalise from one observation that token `B` follows token `A`, to predict that token `B` will follow `A` after future occurrences of `A`, even if these two tokens had never appeared together in the model's training data.
   * **Anti-induction head**: implements the same induction tasks but suppresses the attended token.
   * **Induction circuit**: a circuit of two attention heads that implements induction behaviour (using K-composition), with the first head acting as a previous token head, and the second an induction head.
 * TransformerLens Introduction:
@@ -36,5 +37,19 @@
   * Parameters and activations:
     * The **activations** of a model depend on a given input, e.g. the attention scores and patterns; we can use 'hooks' to access these values during a forward pass.
     * A single attention-only layer in this paradigm is a `TransformerBlock`; the architecture of each block is shown below.
-
-![The architecture of a TransformerBlock](https://raw.githubusercontent.com/info-arena/ARENA_img/main/misc/small-merm.svg)
+    * <img src="https://raw.githubusercontent.com/info-arena/ARENA_img/main/misc/small-merm.svg" alt="Attention-only architecture of a TransformerBlock" width="200"/>
+    * A full `TransformerBlock` layer combines this attention-only block with biases, layernorms, and MLPs, as shown below.
+    * <img src="https://raw.githubusercontent.com/info-arena/ARENA_img/main/misc/full-merm.svg" alt="Full architecture of a TransformerBlock" width="200"/>
+    * In TransformerLens, you can inspect weight matrices across the whole model with `model.W_Q` or by layer `model.blocks[0].attn.W_Q` (which gives all query weights for attention heads in layer 0).
+    * We can similarly inspect the embeddings, unembeddings, and positional embeddings using `model.W_E`, `model.W_U`, and `model.W_pos` respectively.
+    * And the same pattern can be used for bias matrices, e.g. `model.b_Q` for all query biases.
+    * MLP layers can be inspected using `model.W_in` and `model.W_out`.
+  * The model's tokeniser can be accessed through `model.tokenizer`. We can tokenize with `model.to_tokens()` and decode with `model.to_string()` or `model.to_str_tokens()`.
+* Caching activation value:
+  * We can generate logits and cache the utilised activation values on a given input with `logits, cache = model.run_with_cache(text)`.
+  * Each key in the returned cache object corresponds to a single activation within the full model. These can be indexed by later using the key pattern `cache["pattern", 0]`.
+* Visualising attention heads:
+  * Research suggests that some aspects of a model are 'intrinsically interpretable' --- such as the input tokens, the output logits, and the attention patterns --- whereas others --- such the residual stream, keys, queries, values --- may not be possible to interpret and are instead compressed intermediate states.
+  * We can use the CircuitsVis library (above) to visualise the attention pattern of all attention heads in each layer of a given model on a given input sequence.
+  * To do this, use the `attention.attention_patterns` function that takes input of the attention head patterns and string tokens of the input sequence.
+  * For models with causal attention (attention can only look backwards) this fill plot a series of triangular charts of the attention patterns.
