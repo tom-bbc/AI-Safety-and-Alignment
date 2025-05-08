@@ -13,6 +13,9 @@
   * [Scalable AI Safety via Doubly-Efficient Debate](https://arxiv.org/abs/2311.14125) (Nov 2023)
   * [On scalable oversight with weak LLMs judging strong LLMs](https://arxiv.org/abs/2407.04622) (Jul 2024)
 * [Are Sparse Autoencoders Useful? A Case Study in Sparse Probing](https://arxiv.org/abs/2502.16681) (Feb 2025)
+* [InversionView: A General-Purpose Method for Reading Information from Neural Activations](https://openreview.net/forum?id=P7MW0FahEq) (Jul 2024)
+* [Measuring Progress in Dictionary Learning for Language Model Interpretability with Board Game Models](https://openreview.net/forum?id=qzsDKwGJyB) (Jul 2024)
+* [The Geometry of Categorical and Hierarchical Concepts in Large Language Models](https://openreview.net/forum?id=KXuYjuBzKo) (Jul 2024)
 
 ### Blogposts
 
@@ -20,6 +23,7 @@
   * [Towards Monosemanticity: Decomposing Language Models With Dictionary Learning](https://transformer-circuits.pub/2023/monosemantic-features/index.html) (Oct 2023)
   * [Circuit Tracing: Revealing Computational Graphs in Language Models](https://transformer-circuits.pub/2025/attribution-graphs/methods.html) (Mar 2025)
   * [On the Biology of a Large Language Model](https://transformer-circuits.pub/2025/attribution-graphs/biology.html) by Anthropic (Mar 2025)
+  * [Mechanistic Interpretability, Variables, and the Importance of Interpretable Bases](https://www.transformer-circuits.pub/2022/mech-interp-essay) (Jun 2022)
 * DeepMind Safety Research:
   * [AGI Safety and Alignment at Google DeepMind: A Summary of Recent Work](https://deepmindsafetyresearch.medium.com/agi-safety-and-alignment-at-google-deepmind-a-summary-of-recent-work-8e600aca582a) (Oct 2024) ✅
   * [An Approach to Technical AGI Safety and Security](https://deepmindsafetyresearch.medium.com/an-approach-to-technical-agi-safety-and-security-25928819fbc6) (Apr 2025) ✅
