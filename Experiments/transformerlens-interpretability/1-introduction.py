@@ -1,14 +1,7 @@
-import circuitsvis
-import circuitsvis.attention
 import torch
 from einops import einsum
 from transformer_lens import HookedTransformer
-
-
-def print_section_header(title: str) -> None:
-    print("\n" + "#" * 80)
-    print(f"# {title}")
-    print("#" * 80)
+from utils import print_section_header
 
 
 def main() -> None:
@@ -133,17 +126,6 @@ def main() -> None:
         manual_activations_layer_0,
     )
     print(f"\n * Manual and cached activations match: {check_match}")
-
-    # Visualising attention patterns
-    example_text_string_tokens = model.to_str_tokens(example_text_2)
-
-    html_page = circuitsvis.attention.attention_patterns(
-        attention=cached_activations_layer_0,
-        tokens=example_text_string_tokens,
-    )
-
-    with open("attn_heads.html", "w") as f:
-        f.write(str(html_page))
 
 
 if __name__ == "__main__":

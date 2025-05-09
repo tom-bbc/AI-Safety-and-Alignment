@@ -53,3 +53,13 @@
   * We can use the CircuitsVis library (above) to visualise the attention pattern of all attention heads in each layer of a given model on a given input sequence.
   * To do this, use the `attention.attention_patterns` function that takes input of the attention head patterns and string tokens of the input sequence.
   * For models with causal attention (attention can only look backwards) this fill plot a series of triangular charts of the attention patterns.
+  * There are three basic patterns that appear within the visualised attention patterns:
+    * Previous token heads - main attention patterns are on the preceeding token.
+    * Current token heads - attention mainly on the current token.
+    * First token heads - mainly attend to the first token in the sequence. The first token is often used as the 'resting' position for heads that only sometimes activate, as attention probabilities must sum to 1.
+* Induction heads:
+  * **Induction head circuit:** the induction circuit consists of a previous token head in layer 0 and an induction head in layer 1, where the induction head learns to attend to the token immediately after copies of the current token via K-Composition with the previous token head. Hence, induction heads cannot form in a single layer model.
+  * Induction heads seem to be responsible for the vast majority of **in-context learning** - the ability to use far back tokens in the context to predict the next token. This is a significant way in which transformers outperform older architectures like RNNs or LSTMs.
+  * They develop fairly suddenly in a phase change (from about 2B to 4B training tokens) and are responsible for a significant loss decrease, so much so that there's a visible bump in the loss curve when they develop.
+  * This core circuit seems to be used in a bunch of more sophisticated settings, such as translation or few-shot learning.
+  *

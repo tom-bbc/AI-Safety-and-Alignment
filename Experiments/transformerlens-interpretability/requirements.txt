@@ -1,2 +1,4 @@
 transformer_lens
 circuitsvis
+plotly
+plotly-utils
