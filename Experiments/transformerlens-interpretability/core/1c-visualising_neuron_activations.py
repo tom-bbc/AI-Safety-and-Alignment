@@ -58,17 +58,16 @@ def main(model_name: str, input_text: str, device: str) -> None:
     )
 
     # Visualise neuron activations on set of HTML pages
-    html_page = str(html_page)
-
     html_page_filepath = os.path.join(
-        os.getcwd(), "../outputs/neuron_activations_all_layers.html"
+        os.path.abspath(os.path.join(os.getcwd(), os.pardir)),
+        "outputs",
+        "neuron_activations_all_layers.html",
     )
 
     with open(html_page_filepath, "w") as fp:
-        fp.write(html_page)
+        fp.write(str(html_page))
 
     print(f" * Visualised neuron activations saved to: {html_page_filepath}")
-
     webbrowser.open("file://" + html_page_filepath)
 
 

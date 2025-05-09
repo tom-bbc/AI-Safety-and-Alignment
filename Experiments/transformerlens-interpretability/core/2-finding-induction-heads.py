@@ -3,7 +3,6 @@ import webbrowser
 
 import circuitsvis
 import circuitsvis.attention
-import plotly_utils
 import torch
 from eindex import eindex
 from huggingface_hub import hf_hub_download
@@ -18,6 +17,8 @@ def main() -> None:
 
     device = "mps"
     display_html = False
+
+    os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
     # Define a toy attention-only model with no MLP layers, LayerNorms, or biases.
     config = HookedTransformerConfig(
@@ -115,27 +116,65 @@ def main() -> None:
     sequence_length = 50
     batch_size = 1
 
-    input_tokens, output_logits, cached_activations = (
-        run_and_cache_model_repeated_tokens(model, sequence_length, batch_size, device)
+    random_repeated_token_sequence = generate_repeated_tokens(
+        model.cfg.d_vocab, sequence_length, batch_size, device
+    )
+
+    output_logits, cached_activations = model.run_with_cache(
+        random_repeated_token_sequence
     )
     cached_activations.remove_batch_dim()
-
-    input_string_tokens = model.to_str_tokens(input_text)
+    random_repeated_token_strings = model.to_str_tokens(random_repeated_token_sequence)
 
     model.reset_hooks()
 
     # Get log probabilities
     log_probs = output_logits.log_softmax(dim=-1)
-    log_probs = eindex(log_probs, input_tokens, "b s [b s+1]")
+    log_probs = eindex(log_probs, random_repeated_token_sequence, "b s [b s+1]")
+    log_probs = log_probs.flatten()
+    log_probs = log_probs.cpu().detach().numpy()
 
     # Plot per-token loss
     initial_sequence_loss = log_probs[:sequence_length].mean()
     repeated_sequence_loss = log_probs[sequence_length:].mean()
 
-    print(f" * Loss on initial part of sequence: {initial_sequence_loss}")
-    print(f" * Loss on repeated part of sequence: {repeated_sequence_loss}")
+    print(f"\n * Loss on initial part of sequence: {initial_sequence_loss:.2f}")
+    print(f" * Loss on repeated part of sequence: {repeated_sequence_loss:.2f}")
 
-    plotly_utils.plot_loss_difference(log_probs, input_string_tokens, sequence_length)
+    # Visualise attention patterns in second layer to identifiy induction heads
+    cached_activations_layer_1 = cached_activations["pattern", 1]
+
+    html_page = circuitsvis.attention.attention_patterns(
+        attention=cached_activations_layer_1,
+        tokens=random_repeated_token_strings,
+    )
+
+    html_page_filepath = os.path.join(
+        os.path.abspath(os.path.join(os.getcwd(), os.pardir)),
+        "outputs",
+        "induction_head_activations.html",
+    )
+
+    with open(html_page_filepath, "w") as fp:
+        fp.write(str(html_page))
+
+    print(f"\n * Visualised attention head activations saved to: {html_page_filepath}")
+    webbrowser.open("file://" + html_page_filepath)
+
+    ################################################################################
+    # Using attention patterns to detect induction heads
+    ################################################################################
+
+    print_section_header("Using attention patterns to detect induction heads")
+
+    induction_heads = detect_induction_heads(
+        cached_activations,
+        n_layers,
+        n_heads,
+        sequence_length,
+    )
+
+    print(f"\n * Induction heads: {', '.join(induction_heads)}")
 
 
 ################################################################################
@@ -235,17 +274,38 @@ def generate_repeated_tokens(
     return full_sequence
 
 
-def run_and_cache_model_repeated_tokens(
-    model: HookedTransformer, seq_len: int, batch_size: int, device: str
-) -> tuple[torch.Tensor, torch.Tensor, ActivationCache]:
-    """Runs a model on a sequence of repeated random tokens"""
+################################################################################
+# An induction-head detector
+################################################################################
 
-    token_sequence = generate_repeated_tokens(
-        model.cfg.d_vocab, seq_len, batch_size, device
-    )
-    logits, cache = model.run_with_cache(token_sequence)
 
-    return token_sequence, logits, cache
+def detect_induction_heads(
+    cache: ActivationCache,
+    n_layers: int,
+    n_heads: int,
+    repeated_seq_len: int,
+    attention_score_threshold: float = 0.4,
+) -> list[str]:
+    """Returns a list of indices "layer.head" detected as being induction heads"""
+
+    # In our repeated sequence, tokens reoccur at `repeated_seq_len` intervals
+    # So the offset to check for attended tokens should be -(repeated_seq_len - 1)
+    offset = -(repeated_seq_len - 1)
+    head_indices = []
+
+    # Cycle through each head in each layer
+    for layer in range(n_layers):
+        for head in range(n_heads):
+            # Get attention pattern for each layer and head
+            attention_pattern = cache["pattern", layer][head]
+
+            # Check for attended tokens with an offset of -(repeated_seq_len - 1)
+            attention_score = attention_pattern.diagonal(offset).mean()
+
+            if attention_score > attention_score_threshold:
+                head_indices.append(f"{layer}.{head}")
+
+    return head_indices
 
 
 if __name__ == "__main__":

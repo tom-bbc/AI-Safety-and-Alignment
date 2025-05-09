@@ -11,7 +11,6 @@ def main(model_name: str, input_text: str, device: str) -> None:
     ################################################################################
 
     model = HookedTransformer.from_pretrained(model_name, device=device)
-    n_layers = model.cfg.n_layers
 
     ################################################################################
     # Inspecting activation values
@@ -26,8 +25,7 @@ def main(model_name: str, input_text: str, device: str) -> None:
     )
 
     # Visualise attention patterns on set of HTML pages
-    # layer_idx = input("\nInput model layer to visualise: ")
-    # layer_idx = int(layer_idx)
+    # n_layers = model.cfg.n_layers
     layer_idx = 0
 
     # for layer_idx in range(n_layers):
@@ -37,17 +35,17 @@ def main(model_name: str, input_text: str, device: str) -> None:
         attention=cached_activations_layer_idx,
         tokens=token_strings,
     )
-    html_page = str(html_page)
 
     html_page_filepath = os.path.join(
-        os.getcwd(), "outputs", f"attention_head_activations_layer_{layer_idx}.html"
+        os.path.abspath(os.path.join(os.getcwd(), os.pardir)),
+        "outputs",
+        f"attention_head_activations_layer_{layer_idx}.html",
     )
 
     with open(html_page_filepath, "w") as fp:
-        fp.write(html_page)
+        fp.write(str(html_page))
 
     print(f"\n * Visualised attention head activations saved to: {html_page_filepath}")
-
     webbrowser.open("file://" + html_page_filepath)
 
 
