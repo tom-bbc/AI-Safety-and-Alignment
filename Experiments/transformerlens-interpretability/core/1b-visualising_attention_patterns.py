@@ -4,6 +4,10 @@ import webbrowser
 import circuitsvis
 from transformer_lens import HookedTransformer
 
+################################################################################
+# Main process
+################################################################################
+
 
 def main(model_name: str, input_text: str, device: str) -> None:
     ################################################################################

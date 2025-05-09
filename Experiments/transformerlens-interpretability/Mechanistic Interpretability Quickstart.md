@@ -65,4 +65,8 @@
   * This core circuit seems to be used in a bunch of more sophisticated settings, such as translation or few-shot learning.
   * If we know where repeated sequences will occur in a piece of text, we can use this offset to identify induction heads (in the second layer) by detecting heads with a high attention score on the token after the previous token at that offset in the sequence. This is because we know because on the repeated/second instance of a given token `T`, an induction head will attend to the token after the first instance of `T`.
 * Hooks:
-  *
+  * TransformerLens allows full control over the operations inside the transformer through tools known as **hook points**.
+  * Hooks allow us to make precise edits to the transformer's internal operations/values and observe how this affects its outputs/behaviour.
+  * TransformerLens has one hook point for each activation value.
+  * **Hook functions** can be used to edit activation values. These are introduced to the model run process with `model.run_with_hooks` and take input of a `activation_value` and `hook_point` (returning a tensor of the same shape as the activation value input).
+  * [PyTorch hooks](https://www.digitalocean.com/community/tutorials/pytorch-hooks-gradient-clipping-debugging) also allow you to intervene with transformer layers (but not on an activation basis).

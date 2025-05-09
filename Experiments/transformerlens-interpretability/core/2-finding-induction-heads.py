@@ -7,7 +7,11 @@ import torch
 from eindex import eindex
 from huggingface_hub import hf_hub_download
 from transformer_lens import ActivationCache, HookedTransformer, HookedTransformerConfig
-from utils import print_section_header
+from utils import generate_repeated_tokens, print_section_header
+
+################################################################################
+# Main process
+################################################################################
 
 
 def main() -> None:
@@ -255,23 +259,6 @@ def detect_first_token_heads(
                 head_indices.append(f"{layer}.{head}")
 
     return head_indices
-
-
-################################################################################
-# Plotting per-token loss on repeated sequence
-################################################################################
-
-
-def generate_repeated_tokens(
-    vocab, seq_len: int, batch_size: int, device: str
-) -> torch.Tensor:
-    """Generates a sequence of repeated random tokens"""
-    torch.manual_seed(42)
-
-    repeating_tokens = torch.randint(0, vocab, (batch_size, seq_len), dtype=torch.int64)
-    full_sequence = torch.cat([repeating_tokens, repeating_tokens], dim=-1).to(device)
-
-    return full_sequence
 
 
 ################################################################################

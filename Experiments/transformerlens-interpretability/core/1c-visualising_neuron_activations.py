@@ -8,6 +8,10 @@ import torch
 from transformer_lens import HookedTransformer
 from transformer_lens import utils as tl_utils
 
+################################################################################
+# Main process
+################################################################################
+
 
 def main(model_name: str, input_text: str, device: str) -> None:
     ################################################################################
