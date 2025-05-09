@@ -66,7 +66,7 @@ def main() -> None:
         html_page = str(html_page)
 
         html_page_filepath = os.path.join(
-            os.getcwd(), "outputs/attention_head_activations_layer_0.html"
+            os.getcwd(), "../outputs/attention_head_activations_layer_0.html"
         )
 
         with open(html_page_filepath, "w") as fp:

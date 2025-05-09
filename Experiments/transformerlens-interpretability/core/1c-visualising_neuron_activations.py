@@ -61,7 +61,7 @@ def main(model_name: str, input_text: str, device: str) -> None:
     html_page = str(html_page)
 
     html_page_filepath = os.path.join(
-        os.getcwd(), "outputs/neuron_activations_all_layers.html"
+        os.getcwd(), "../outputs/neuron_activations_all_layers.html"
     )
 
     with open(html_page_filepath, "w") as fp:
