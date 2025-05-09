@@ -8,6 +8,7 @@
   * [TransformerLens Git Repo](https://github.com/TransformerLensOrg/TransformerLens)
   * [Transformer Lens Main Demo Notebook](https://colab.research.google.com/github/neelnanda-io/TransformerLens/blob/main/demos/Main_Demo.ipynb#scrollTo=pPSgSaDOIQPG)
   * [Transformer Lens for Exploritary Analysis Demo](https://colab.research.google.com/github/neelnanda-io/TransformerLens/blob/main/demos/Exploratory_Analysis_Demo.ipynb#scrollTo=b54lBNxYM_PS)
+  * [1.2_Intro_to_Mech_Interp_solutions.ipynb](https://colab.research.google.com/github/callummcdougall/ARENA_3.0/blob/main/chapter1_transformer_interp/exercises/part2_intro_to_mech_interp/1.2_Intro_to_Mech_Interp_solutions.ipynb?t=20250413#scrollTo=1Dnf9CRaXv7P)
 * CircuitsVis:
   * The CircuitsVis library lets you pass in tensors to an interactive visualization:
   * [CircuitsVis Git Repo](https://github.com/TransformerLensOrg/CircuitsVis)
@@ -62,4 +63,6 @@
   * Induction heads seem to be responsible for the vast majority of **in-context learning** - the ability to use far back tokens in the context to predict the next token. This is a significant way in which transformers outperform older architectures like RNNs or LSTMs.
   * They develop fairly suddenly in a phase change (from about 2B to 4B training tokens) and are responsible for a significant loss decrease, so much so that there's a visible bump in the loss curve when they develop.
   * This core circuit seems to be used in a bunch of more sophisticated settings, such as translation or few-shot learning.
+  * If we know where repeated sequences will occur in a piece of text, we can use this offset to identify induction heads (in the second layer) by detecting heads with a high attention score on the token after the previous token at that offset in the sequence. This is because we know because on the repeated/second instance of a given token `T`, an induction head will attend to the token after the first instance of `T`.
+* Hooks:
   *

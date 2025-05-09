@@ -2,3 +2,5 @@ transformer_lens
 circuitsvis
 plotly
 plotly-utils
+eindex-callum
+matplotlib
