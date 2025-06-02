@@ -1,5 +1,3 @@
-import json
-
 import einops
 import torch
 from torch import Tensor
