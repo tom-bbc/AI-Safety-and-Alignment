@@ -97,6 +97,9 @@ def main(model_name: str, input_text: str, device: str) -> None:
         non_zero_indices,
     )
 
+    # Remove all hooks at end of run
+    model.reset_hooks()
+
 
 ################################################################################
 # Basic hook function

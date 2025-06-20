@@ -3,20 +3,6 @@
 ## Resources
 
 * Useful course / presentation: [Intro to Mechanistic Interpretability: TransformerLens &amp; Induction Circuits](https://arena-chapter1-transformer-interp.streamlit.app/[1.2]_Intro_to_Mech_Interp)
-* TransformerLens:
-  * The TransformerLens library is a collection of features for mechanistic interpretability.
-  * [TransformerLens Git Repo](https://github.com/TransformerLensOrg/TransformerLens)
-  * [Transformer Lens Main Demo Notebook](https://colab.research.google.com/github/neelnanda-io/TransformerLens/blob/main/demos/Main_Demo.ipynb#scrollTo=pPSgSaDOIQPG)
-  * [Transformer Lens for Exploritary Analysis Demo](https://colab.research.google.com/github/neelnanda-io/TransformerLens/blob/main/demos/Exploratory_Analysis_Demo.ipynb#scrollTo=b54lBNxYM_PS)
-  * [1.2_Intro_to_Mech_Interp_solutions.ipynb](https://colab.research.google.com/github/callummcdougall/ARENA_3.0/blob/main/chapter1_transformer_interp/exercises/part2_intro_to_mech_interp/1.2_Intro_to_Mech_Interp_solutions.ipynb?t=20250413#scrollTo=1Dnf9CRaXv7P)
-* CircuitsVis:
-  * The CircuitsVis library lets you pass in tensors to an interactive visualization:
-  * [CircuitsVis Git Repo](https://github.com/TransformerLensOrg/CircuitsVis)
-  * [CircuitsVis example visualisations](https://transformerlensorg.github.io/CircuitsVis/?path=/story/activations-textneuronactivations--multiple-samples)
-* A Mathematical Framework for Transformer Circuits:
-  * [Anthropic blogpost](https://transformer-circuits.pub/2021/framework/index.html)
-  * [Paper walkthrough video](https://www.youtube.com/watch?v=KV5gbOmHbjU)
-  * [Explainer of key terms](https://dynalist.io/d/n2ZWtnoYHrU1s4vnFSAQ519J#z=aGu9fP1EG3hiVdq169cMOJId)
 
 ## Intro to Mechanistic Interpretability: TransformerLens & induction circuits
 
@@ -70,4 +56,8 @@
   * TransformerLens has one hook point for each activation value.
   * **Hook functions** can be used to edit activation values. These are introduced to the model run process with `model.run_with_hooks` and take input of a `activation_value` and `hook_point` (returning a tensor of the same shape as the activation value input).
   * [PyTorch hooks](https://www.digitalocean.com/community/tutorials/pytorch-hooks-gradient-clipping-debugging) also allow you to intervene with transformer layers (but not on an activation basis).
-  *
+* Building interpretability tools:
+  * For mechanistic interpretability we want to determine how much a particular model component (e.g. a given attention head in a layer) contributes to the model's performance on a given task.
+  * Direct logit attribution:
+    * One way of interpreting the influence of a head is to determine what are the direct contibutions of a given head to the output logits.
+    * Output logits are the sum of the contibutions of each model layer (which are the sum of contributions of each head).
