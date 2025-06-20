@@ -24,3 +24,10 @@
 ![Node Connections](imgs/node-connections.png)
 ![Subgraph](imgs/subgraph.png)
 ![Feature Details](imgs/feature-details.png)
+
+
+### Paper explainer
+
+* [Circuit Tracing: Revealing Computational Graphs in Language Models](https://transformer-circuits.pub/2025/attribution-graphs/methods.html)
+* [Anthropic: Circuit Tracing + On the Biology of a Large Language Model](https://www.youtube.com/watch?v=ig5RNJJaFJE&ab_channel=LatentSpaceTV%28see%40LatentSpacePodforPod%29)
+* [On the Biology of a Large Language Model (Part 1)](https://www.youtube.com/watch?v=mU3g2YPKlsA&ab_channel=YannicKilcher)

@@ -70,3 +70,4 @@
   * TransformerLens has one hook point for each activation value.
   * **Hook functions** can be used to edit activation values. These are introduced to the model run process with `model.run_with_hooks` and take input of a `activation_value` and `hook_point` (returning a tensor of the same shape as the activation value input).
   * [PyTorch hooks](https://www.digitalocean.com/community/tutorials/pytorch-hooks-gradient-clipping-debugging) also allow you to intervene with transformer layers (but not on an activation basis).
+  *
