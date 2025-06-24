@@ -11,14 +11,14 @@ def imshow(tensor, **kwargs):
     ).show()
 
 
-def line(tensor, **kwargs):
+def plot_line(tensor, **kwargs):
     px.line(
         y=utils.to_numpy(tensor),
         **kwargs,
     ).show()
 
 
-def scatter(x, y, xaxis="", yaxis="", caxis="", **kwargs):
+def plot_scatter(x, y, xaxis="", yaxis="", caxis="", **kwargs):
     x = utils.to_numpy(x)
     y = utils.to_numpy(y)
     px.scatter(

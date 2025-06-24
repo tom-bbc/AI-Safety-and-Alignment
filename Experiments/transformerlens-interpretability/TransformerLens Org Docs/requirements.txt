@@ -1,2 +1,4 @@
 ipython
 transformer_lens
+nbformat
+plotly
